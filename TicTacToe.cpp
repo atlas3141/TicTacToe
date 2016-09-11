@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -20,12 +21,30 @@ int main(){
 	turn = 'O';
       else
 	turn = 'X';
- //take in input
-  //set the array
-  //print the array
+      bool moved = false;
+      while (moved == false){
+	cin >> input;//take in the input and make sure its good
+	if (strlen(input) != 2){
+	  cout << "Enter a letter then a number" << endl;
+	}
+	else if (input[0] != 'a' && input[0] != 'b' && input[0] != 'c'){
+	  cout << "The first symbol needs to be a letter" << endl;
+	}
+	else if (input[1] != '1' && input[1] != '2' && input[1] != '3'){
+	  cout << "The second symbol needs to be a number" << endl;
+	}
+	else if (board[input[0]-'a'][input[1]-'1'] == ' '){
+	  board[input[0]-'a'][input[1]-'1'] = turn;
+	  moved = true;
+	  printBoard(board);
+	}
+	else{
+	  cout << "That space is taken" << endl;	  
+	}
       }
+    }
     if (checkTie(board)) //say who won
-	cout << "The game ended in a tie. You both loose!" << endl;
+      cout << "The game ended in a tie. You both loose!" << endl;
     else
       cout << turn << "Wins!" << endl;
   }
