@@ -1,3 +1,6 @@
+/*Tic Tac Toe, September 10 2016, Josh Howell"
+  A command Line tic tac toe game */
+
 #include <iostream>
 #include <cstring>
 
@@ -13,7 +16,7 @@ int main(){
   char board[3][3];
   char input[6];
   bool playing = true;
-  while (playing = true){ //playing game loop
+  while (playing == true){ //playing game loop
     resetBoard(board, turn);
     printBoard(board);
     while(!(checkWin(board,turn) || checkTie(board))){ //the game hasnt reached an end state loop
@@ -47,6 +50,11 @@ int main(){
       cout << "The game ended in a tie. You both loose!" << endl;
     else
       cout << turn << " Wins!" << endl;
+    cout << "Do you want to play again? (y/n)" << endl;
+    cin >> input;
+    if(strcmp(input,"y")){ //ask if they want to play agian
+      playing = false;
+    }
   }
 }
 void printBoard(char (*board)[3]){
