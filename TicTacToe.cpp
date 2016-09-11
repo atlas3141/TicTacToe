@@ -16,7 +16,7 @@ int main(){
   while (playing = true){ //playing game loop
     resetBoard(board, turn);
     printBoard(board);
-    while(!(checkWin(board,turn) && checkTie(board))){ //the game hasnt reached an end state loop
+    while(!(checkWin(board,turn) || checkTie(board))){ //the game hasnt reached an end state loop
       if (turn == 'X') //swap the turns first so variables line up
 	turn = 'O';
       else
@@ -46,7 +46,7 @@ int main(){
     if (checkTie(board)) //say who won
       cout << "The game ended in a tie. You both loose!" << endl;
     else
-      cout << turn << "Wins!" << endl;
+      cout << turn << " Wins!" << endl;
   }
 }
 void printBoard(char (*board)[3]){
