@@ -5,7 +5,7 @@
 #include <cstring>
 
 using namespace std;
-
+//they do exactly what their names are
 void printBoard(char (*board)[3]);
 void resetBoard(char (*board)[3], char & turn);
 bool checkWin(char (*board)[3], char player);
