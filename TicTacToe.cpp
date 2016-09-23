@@ -7,11 +7,13 @@
 using namespace std;
 //they do exactly what their names are
 void printBoard(char (*board)[3]);
-void resetBoard(char (*board)[3], char & turn);
+void resetBoard(char (*board)[3], char &turn);
 bool checkWin(char (*board)[3], char player);
 bool checkTie(char (*board)[3]);
 
 int main(){
+  int xwins = 0;
+  int owins = 0;
   char turn = 'O'; //initial set up
   char board[3][3];
   char input[6];
@@ -29,7 +31,7 @@ int main(){
 	cin >> input;//take in the input and make sure its good
 	if (strlen(input) != 2){
 	  cout << "Enter a letter then a number" << endl;
-	}
+	}  
 	else if (input[0] != 'a' && input[0] != 'b' && input[0] != 'c'){
 	  cout << "The first symbol needs to be a letter" << endl;
 	}
@@ -46,10 +48,18 @@ int main(){
 	}
       }
     }
-    if (checkTie(board)) //say who won
+    if (checkTie(board)){ //say who won
       cout << "The game ended in a tie. You both loose!" << endl;
-    else
+    }else{
       cout << turn << " Wins!" << endl;
+      if (turn == 'X'){
+	xwins ++;
+      }else{
+	owins ++;
+      }
+    }
+    cout << "X has won " << xwins << " times" << endl;
+    cout << "O has won " << owins << " times" << endl;
     cout << "Do you want to play again? (y/n)" << endl;
     cin >> input;
     if(strcmp(input,"y")){ //ask if they want to play agian
@@ -58,12 +68,12 @@ int main(){
   }
 }
 void printBoard(char (*board)[3]){
-  cout << " \tA\tB\tC" << endl;
+  cout << " \tA\tB\tC" << endl; //Prints stuff using cout
   cout << "1\t" << board[0][0] << "\t" << board[1][0] << "\t" << board[2][0] << endl;
   cout << "2\t" << board[0][1] << "\t" << board[1][1] << "\t" << board[2][1] << endl;
   cout << "3\t" << board[0][2] << "\t" << board[1][2] << "\t" << board[2][2] << endl;
 }
-void resetBoard(char (*board)[3], char & turn){
+void resetBoard(char (*board)[3], char &turn){ //clears the board
   for (int i = 0; i < 3; i++){
     for (int j = 0; j < 3; j++){
       board[i][j] = ' ';
@@ -71,7 +81,7 @@ void resetBoard(char (*board)[3], char & turn){
   }
   turn = 'O';
 }
-bool checkWin(char (*board)[3], char player){
+bool checkWin(char (*board)[3], char player){ //checks wins
   if (board[0][0] == player && board[1][1] == player && board[2][2] == player){
     return true;
   }
